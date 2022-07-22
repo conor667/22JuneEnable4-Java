@@ -49,10 +49,10 @@ public class TodoListApp {
 					todoController.read();
 					break;
 				case UPDATE:
+					todoController.update();
 					break;
 				case DELETE_BY_ID:
-					break;
-				case DELETE_BY_NAME:
+					todoController.deleteById();
 					break;
 				case EXIT:
 					isRunning = false;
@@ -65,7 +65,7 @@ public class TodoListApp {
 				// can have multiple catch blocks, from most specific to least specific
 				System.out.println("Something went wrong...");
 			}
-		} while (isRunning == true);
+		} while (isRunning);
 	}
 
 	private TodoMenuOption getInputOption(String input) {
@@ -83,7 +83,7 @@ public class TodoListApp {
 		TodoMenuOption[] menuOptions = TodoMenuOption.values();
 		
 		for (int i = 0; i < menuOptions.length; i++) {
-			String output = String.format("[%s] %s", menuOptions[i].getInputCode(), menuOptions[i].toString());
+			String output = String.format("[%s] %s (%s) ", menuOptions[i].getInputCode(), menuOptions[i].toString(), menuOptions[i].getDescription());
 			System.out.println(output);
 		}
 	}

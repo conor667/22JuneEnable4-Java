@@ -34,8 +34,21 @@ public class TodoRepository {
 		return todoItems;
 	}
 
-	public Todo update(Todo todo) {
-		return null;
+	public boolean update(String name, String replace) {
+		boolean updatedItem = false;
+		
+		for (int i = 0; i < todoItems.size(); i++){
+			Todo current = todoItems.get(i);
+			
+			
+			if (current.getName().equals(name)) {
+				// name.replace(name, replace);
+				current.setName(replace);
+				updatedItem = true;
+			}
+		
+		}
+		return updatedItem;
 	}
 
 	public boolean deleteById(long id) {
@@ -49,11 +62,21 @@ public class TodoRepository {
 				break;
 			}
 		}
-
 		return didDelete;
 	}
 
 	public boolean deleteByName(String name) {
-		return false;
+		boolean didDelete = false;
+
+		for (int i = 0; i < todoItems.size(); i++) {
+			Todo current = todoItems.get(i);
+
+			if (current.getName().equals(name)) {
+				didDelete = todoItems.remove(current);
+				break;
+			}
+		}
+		return didDelete;
 	}
+
 }
